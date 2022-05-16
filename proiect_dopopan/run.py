@@ -15,7 +15,7 @@ def gen_random_populations(nr_muchii, nr_populatie):
         all_populations_arr = []
         for _ in range(nr_muchii):
             all_populations_arr.append(
-                (random.randint(0, 1), round(random.uniform(0, 0.99), 2), random.randint(0, 4),0))
+                (random.randint(0, 1), round(random.uniform(0, 0.99), 2), random.randint(0, 4)))
         all_populations.append(all_populations_arr)
     # print(f'all_populations = {all_populations}')
     return all_populations
@@ -36,29 +36,27 @@ def fitness(all_populations):
             element_one = tuple[0]
             weight = tuple[1]
             value = tuple[2]
-            total_value = tuple[3]
             # print(element_one, element_two)
             if(element_one == 1):
                 sum_weight += weight
                 sum_value += value
         weight_arr.append(sum_weight)
         if(sum_weight <= max_weight):
-            # value_arr.append(sum_value)
-            total_value = sum_value
+            value_arr.append(sum_value)
         else:
-            # value_arr.append(0)
-            total_value = 0
+            value_arr.append(0)
     # return weight
     # print(f'weight of each population = {weight_arr}')
     # print(f'value of each population = {value_arr}')
 
 
 def sort_populations(populations_to_generate):
-    print(f'not sorted = {populations_to_generate}')
-    # for index, tuple in enumerate(populations_to_generate):
-    #     total_value = tuple[3]
-    sorted_populations = populations_to_generate.sort(key=tuple[3], reverse=True)
-    print(f'sorted_populations = {sorted_populations}')
+    # print(f'not sorted = {populations_to_generate}')
+    # # for index, tuple in enumerate(populations_to_generate):
+    # #     total_value = tuple[3]
+    # sorted_populations = populations_to_generate.sort(key=tuple[3], reverse=True)
+    # print(f'sorted_populations = {sorted_populations}')
+    pass
 
 def tournament():
     pass
@@ -83,8 +81,8 @@ def mutation():
     pass
 
 
-populations_to_generate = gen_random_populations(6, 8)
+populations_to_generate = gen_random_populations(2, 2)
 fitness(populations_to_generate)
-sort_populations(populations_to_generate)
-# cross_A, cross_B = crossover(populations_to_generate[0], populations_to_generate[1])
+# sort_populations(populations_to_generate)
+cross_A, cross_B = crossover(populations_to_generate[0], populations_to_generate[1])
 # mutation(cross_A, cross_B)
