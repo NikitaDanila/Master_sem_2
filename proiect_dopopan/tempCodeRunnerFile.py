@@ -1,2 +1,2 @@
-} best solutions === ')
-            # print(ranked[0])
+')
+    # print(f'value of each population = {value_arr}')

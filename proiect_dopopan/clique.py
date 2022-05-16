@@ -63,4 +63,4 @@ if __name__ == 'clique':
 		d[edges[i][0]] += 1;
 		d[edges[i][1]] += 1;
 	
-	print(maxCliques(0, 1));
+	# print(maxCliques(0, 1));

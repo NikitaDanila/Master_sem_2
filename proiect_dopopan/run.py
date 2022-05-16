@@ -1,8 +1,10 @@
 import random
-from shutil import which
 from clique import maxCliques
-maxCliques = maxCliques(0, 1)
-weight = []
+# maxCliques = maxCliques(0, 1)
+weight_arr, value_arr = [], []
+max_weight = maxCliques(0, 1)
+
+'''(daca trece prin muchie sau nu, weight pe care-l are muchia)'''
 
 
 def gen_random_populations(nr_muchii, nr_populatie):
@@ -11,64 +13,84 @@ def gen_random_populations(nr_muchii, nr_populatie):
         all_populations_arr = []
         for _ in range(nr_muchii):
             all_populations_arr.append(
-                (random.randint(0, 1), round(random.uniform(0, 0.99), 2)))
+                (random.randint(0, 1), round(random.uniform(0, 0.99), 2), random.randint(0, 4)))
         all_populations.append(all_populations_arr)
-    # print(all_populations)
+    # print(f'all_populations = {all_populations}')
     return all_populations
 
 
-population = gen_random_populations(6, 3)
-
-
-def fitness(one_population):
-    print("fitness")
-    sum = 0
-    print(one_population)
-    for index, tuple in enumerate(one_population):
-        element_one = tuple[0]
-        element_two = tuple[1]
-        print(element_one, element_two)
-        if(element_one == 1):
-            sum += element_two
-    weight.append([sum, one_population])
-    return weight
-
-
-def foo(fitness_func):
-    solved = 0
-    if fitness_func[0] == maxCliques:
-        solved = 99999
-    else:
-        solved = abs(1 / (0.1 + fitness_func[0]))
-    return [solved, fitness_func]
-
-
-def func(all_populations):
-    i = 0
+def fitness(all_populations):
+    # print("fitness")
+    sum_weight = 0
+    sum_value = 0
+    # print(f'one_population = {one_population}')
     for one_population in all_populations:
-        i += 1
-        # if e clica else return gd = 0
-        print("sum of weights")
-        fitness_func = fitness(one_population)
-        print("real")
-        for iter in fitness_func:
-            foo_res = foo(iter)
-            print(foo_res)
+        sum_weight = 0
+        sum_value = 0
+        for index, tuple in enumerate(one_population):
+            element_one = tuple[0]
+            weight = tuple[1]
+            value = tuple[2]
+            # print(element_one, element_two)
+            if(element_one == 1):
+                sum_weight += weight
+                sum_value += value
+        weight_arr.append(sum_weight)
+        if(sum_weight <= max_weight):
+            value_arr.append(sum_value)
+        else:
+            value_arr.append(0)
+    # return weight
+    # print(f'weight of each population = {weight_arr}')
+    # print(f'value of each population = {value_arr}')
+
+
+populations_to_generate = gen_random_populations(6, 8)
+fitness(populations_to_generate)
+# def foo(fitness_func):
+#     solved = 0
+#     if fitness_func[0] == maxCliques:
+#         solved = 99999
+#     else:
+#         solved = abs(1 / (0.1 + fitness_func[0]))
+#     return [solved, fitness_func]
+
+
+# def func(all_populations):
+#     i = 0
+#     for one_population in all_populations:
+#         i += 1
+#         # if e clica else return gd = 0
+#         # print("sum of weights")
+#         fitness_func = fitness(one_population)
+#         # print("real")
+#         for iter in fitness_func:
+#             foo_res = foo(iter)
+#             # print(foo_res)
 
 
 def tournament():
     pass
 
 
-def crossover():
-    pass
+def crossover(genome_A, genome_B):
+    '''Single Point Crossover'''
+    print(f'genome_A = {genome_A}\ngenome_B = {genome_B}\n\n')
+    genome_length = len(genome_A)
+    if genome_length < 2:
+        return genome_A, genome_B
+
+    p = random.randint(1, genome_length - 1)
+    return print(f'A_modif = {genome_A[0:p] + genome_B[p:]}\nB_modif =  {genome_B[0:p] + genome_A[p:]}')
 
 
 def mutation():
     pass
 
 
-func(population)
+# print(type(populations_to_generate))
+crossover(populations_to_generate[0], populations_to_generate[1])
+# func(population)
 # GD = 6
 
 
