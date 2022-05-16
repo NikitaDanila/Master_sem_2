@@ -1,2 +1,2 @@
-')
-    # print(f'value of each population = {value_arr}')
+
+# mutation(cross_A, cross_B)
