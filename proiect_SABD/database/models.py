@@ -8,7 +8,9 @@ class Genres(Base):
 
     GenreId = Column(Integer, primary_key=True)
     Name = Column(String(120))
-    Tracks_relationship = relationship('Tracks', back_populates='Genres_relationship')
+    Tracks_relationship = relationship(
+        'Tracks', back_populates='Genres_relationship')
+
     def __repr__(self) -> str:
         return f"Genres(GenreId = {self.GenreId}, Name = {self.Name})"
 
@@ -23,7 +25,8 @@ class Tracks(Base):
     UnitPrice = Column(Float)
     Albums_relationship = relationship(
         'Albums', back_populates='Tracks_relationship', cascade='all, delete')
-    Genres_relationship = relationship('Genres', back_populates='Tracks_relationship')
+    Genres_relationship = relationship(
+        'Genres', back_populates='Tracks_relationship')
 
     def __repr__(self) -> str:
         return f'Tracks(\n TrackId = {self.TrackId}\n Name = {self.Name}\n AlbumId = {self.AlbumId}\n\
