@@ -99,8 +99,8 @@ def join_tables_with_filter():
 #              '00000000', 'henry@email.com')
 # add_customer('Marius', 'Enache', 'str. fara_numar',
 #              '11111111', 'mariusica@email.com')
-add_customer('test', 'inca un test', 'str. fara_numar',
-             '11111111', 'mariusica@email.com')
-# join_tables_Albums_Tracks()
-# join_tables_Albums_Tracks_Artist()
+# add_customer('test', 'inca un test', 'str. fara_numar',
+#              '11111111', 'mariusica@email.com')
+# # join_tables_Albums_Tracks()
+join_tables_Albums_Tracks_Artist()
 # join_tables_with_filter()
